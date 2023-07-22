@@ -1,0 +1,11 @@
+{
+  "columnName":["Code", "Name", "Earnings Yield", "P/E Ratio", "EPS", "Dividend Yield", "Closing Price", "Market Price", "Discounted price", "Actions" ],
+  "company" : ["ARB", "BHP", "FPH", "RIO"],
+  "recommended_by_Admin": ["ARB", "BSL", "CSL", "DMP", "JBH", "RIO", "WES", "BHP","FPH", "FMG" ]
+
+}
+
+
+
+
+

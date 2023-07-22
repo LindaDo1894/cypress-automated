@@ -1,0 +1,16 @@
+{
+    "CodeNotInTop200" : ["CBA", "TSLA", "AAPL", "ZIP", "APT"],
+    "NameNotInTop200" : ["Zip Co Limited", "Tesla", "Apple", "Webjet", "123abc"],
+
+    "CodeInTop200":["TER", "CRN", "YAL", "WHC", "ACL"],
+    "NameInTop200":["Terracom","Adairs", "Whitehaven", "Ansell", "Champion Iron"],
+    
+    "Valid_Listcode": ["CIA", "FMG", "GRR"],
+    "Valid_Listname": ["Terracom","Adairs", "Whitehaven"],
+   
+    "Column_Name" :["Code", "Name", "EPS", "P/E Ratio", "Earnings Yield","Operating Margin", 
+                       "Dividend Yield", "Closing Price", "Market Price", "Discounted price"],
+    
+    "chart": ["Revenue", "EBIT", "Net Profit", "Closing Price", "Operating Margin", "Return on Capital", "P/E Ratio", "Market Value"]
+    
+}

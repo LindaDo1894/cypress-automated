@@ -1,0 +1,5 @@
+{
+    "ColumnName" : ["Company Code", "Number Shares Purchased", "Date Purchased", "Purchased Price", "Total", "Actions"],
+    "FieldName" : ["Company Code *", "Quantity *", "Price *", "Total *", "Date"],
+    "InvalidNumber": -5
+}

@@ -1,0 +1,8 @@
+{
+    "columnName":["Rank", "Code", "Earnings Yield", "Return on Capital", "EPS", "P/E Ratio", "Closing Price", "Market Price", "Discounted price", "Actions"],
+    "company": ["TER", "CRN", "YAL", "WHC", "ACL", "OMH", "RIO", "BKW", "AGL", "CDA", 
+                "VEA", "ALD", "ADH", "APE", "ASG", "LOV", "AZJ", "COL", "AKE", "COH"]
+              
+
+}
+ 
