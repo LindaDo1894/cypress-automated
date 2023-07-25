@@ -49,5 +49,9 @@ class MyPurchases
     {
         return cy.get('td > .mantine-Button-root')
     }
+
+    VerifyCode(code){
+        cy.xpath('//tbody/tr[1]/td[1]').should('have.text',code)
+    }
 }
 export default MyPurchases

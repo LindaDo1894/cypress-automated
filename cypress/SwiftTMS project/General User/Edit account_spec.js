@@ -6,7 +6,7 @@ describe.only('Edit account testing', function () {
     beforeEach(function () {
         cy.login().then(()=> {
             cy.visit('https://www.swifttms.com.au/company/list/recommended')
-            const editBox= new EditAccountPage()
+            const editBoxPage= new EditAccountPage()
             editBox.getIconUser().click()
             editBox.getEditDialog().should('be.visible')        
             })

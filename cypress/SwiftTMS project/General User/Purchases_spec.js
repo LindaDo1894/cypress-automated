@@ -1,6 +1,6 @@
 /// <reference types="cypress" />
 
-import MyPurchases from "/Users/linhdo/Desktop/Cypress Practice 1/cypress/SwiftTMS project/PageObjects/My Purchases.js"
+import MyPurchases from '../PageObjects/My Purchases.js'
 
 
 describe('Testing record purchases function', function () {
@@ -116,7 +116,6 @@ describe('Validate the Add New Purchase modal', function () {
         cy.contains('Submit').click()
         purchasePage.NotificationTitle().should('have.text', 'Error')
         purchasePage.NotificationBody().should('be.visible')
-
    })
 
    it("Require a VALID value for Price", function () {

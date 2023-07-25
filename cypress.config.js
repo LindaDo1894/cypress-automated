@@ -15,7 +15,7 @@ module.exports = defineConfig({
     setupNodeEvents(on, config) {
       // implement node event listeners here
     },
-  specPattern:'cypress/SwiftTMS project/General User/Purchases_spec.js',
+  specPattern:'cypress/SwiftTMS project/General User/*_spec.js',
   //'cypress/SwiftTMS project/Companies/Company Analytics_spec.js',
   //'cypress/SwiftTMS project/Companies/Top 200 companies_spec.js',
   //'cypress/SwiftTMS project/Companies/RecommendedCompany_spec.js',

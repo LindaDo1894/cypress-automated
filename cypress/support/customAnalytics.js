@@ -1,7 +1,7 @@
 
 // for `Company Analytics` Page. 
 
-import CompanyAnalytics from '/Users/linhdo/Desktop/Cypress Practice 1/cypress/SwiftTMS project/PageObjects/Company Analytics page.js'
+import CompanyAnalytics from '../SwiftTMS project/PageObjects/Company Analytics page.js'
     
 Cypress.Commands.add("search_InvalidCompany", (name)=> {
     const compAnalytics= new CompanyAnalytics()

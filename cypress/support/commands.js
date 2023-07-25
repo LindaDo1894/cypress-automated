@@ -30,11 +30,15 @@
 
 
 // Custome commands for `LogIn` page
-import LoginPage from "/Users/linhdo/Desktop/Cypress Practice 1/cypress/SwiftTMS project/PageObjects/Loginpage.js"
+import LoginPage from "../SwiftTMS project/PageObjects/Loginpage.js"
+//For `Top 200` page
+import Top200 from "../SwiftTMS project/PageObjects/Top 200 companies.js"
+// For `Recommended Companies` page
+import RecommendedCompaniesPage from "../SwiftTMS project/PageObjects/Recommended Companies page.js"
 
 Cypress.Commands.add('login', (detail)=> {
     cy.session('detail', () => {
-        const logIn= new LoginPage()
+        const logIn = new LoginPage()
         cy.visit('api/auth/signin?callbackUrl=https%3A%2F%2Fwww.swifttms.com.au%2F')
         logIn.getUsername().type(Cypress.env('username')).should('be.visible')
         logIn.getPassword().type(Cypress.env('password'))
@@ -44,8 +48,6 @@ Cypress.Commands.add('login', (detail)=> {
     })
 })
 
-// For `Recommended Companies` page
-import RecommendedCompaniesPage from "/Users/linhdo/Desktop/Cypress Practice 1/cypress/SwiftTMS project/PageObjects/Recommended Companies page.js"
 
 Cypress.Commands.add('Validate_table_content', (content)=> {
     const reCompany= new RecommendedCompaniesPage()
@@ -88,8 +90,7 @@ Cypress.Commands.add('Validate_the_recommendedlist', (code)=> {
     })
 }) 
 
-//For `Top 200` page
-import Top200 from "/Users/linhdo/Desktop/Cypress Practice 1/cypress/SwiftTMS project/PageObjects/Top 200 companies.js"
+
 
 Cypress.Commands.add('Validate_table_content', (content)=> {
     const top200Page= new Top200()
