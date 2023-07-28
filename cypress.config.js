@@ -5,18 +5,21 @@ module.exports = defineConfig({
   env: {
     username: 'Test_User1',
     password: 'Test123',
-    Cypress_Record_Key:'84aad28c-2275-4f5d-a2a6-cc761416e4e0'
+    watchForFileChanges: false
+    
   },
   // any key/value you set in the cypress configuration under the `env` key will become an environment variable. 
   //when your tests are running, using the `Cypress.env` fuction to access the values of the environment variable.
   
   e2e: {
     baseUrl: "https://www.swifttms.com.au",
+    watchForFileChanges: false,
     setupNodeEvents(on, config) {
       // implement node event listeners here
     },
-  specPattern:'cypress/SwiftTMS project/General User/*_spec.js',
-  //'cypress/SwiftTMS project/Companies/Company Analytics_spec.js',
+  specPattern:'cypress/SwiftTMS_Automation Testing /General User Account Tests/*_spec.js',
+  
+  //'cypress/SwiftTMS project/Companies/Company Analytics_spec.js',s
   //'cypress/SwiftTMS project/Companies/Top 200 companies_spec.js',
   //'cypress/SwiftTMS project/Companies/RecommendedCompany_spec.js',
   //'cypress/SwiftTMS project/General User/Edit account_spec.js',

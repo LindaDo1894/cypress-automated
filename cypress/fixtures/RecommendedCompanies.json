@@ -1,0 +1,13 @@
+{ 
+  "invalidCode": ["TES", "ab12","qw@"],
+  "invalidName":["Tesla", "jojo", "CiCi"],
+  "validCode" : ["ARB", "BHP", "FPH"],
+  "validName":["BHP Group Ltd","Wesfarmers Ltd", "JB HiFi Ltd"],
+  "recommended_by_Admin": ["ARB", "BSL", "CSL", "DMP", "JBH", "RIO", "WES", "BHP","FPH", "FMG" ]
+
+}
+
+
+
+
+

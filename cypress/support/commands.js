@@ -12,131 +12,64 @@
 // -- This is a parent command --
 // Cypress.Commands.add('login', (email, password) => { ... })
 
-/*Cypress.Commands.add('login', ()=> {
+
+/*
+Cypress.Commands.add('LoginAPI', (token)=> {
     cy.request({
-        method:'POST',
-        url:'https://www.swifttms.com.au/api/auth/callback/credentials',
-        body: {
-                username: Cypress.env('username'),
-                password: Cypress.env('password'),
-                csrfToken:'41715aadab79227bf9d7676dbfd154fc20557e3e201b4dade16c413dd61450c8',
-            }   
-    }).then((response) => {
-        expect(response.headers).to.have.property('__Secure-next-auth.session-')
-    })
-    
-}) */
+        method: 'GET',
+        url:'api/auth/session',
+        headers:{
+            'Content-Type': 'application/json',
+            'Set-Cookie':'__Secure-next-auth.session-token=' + token
+        }
+       }).then((response) => {
+        expect(response.status).to.eq(200)
+       })  
+
+})
+*/
+
+import { Login_Page } from '../SwiftTMS_Automation Testing /pageObjects/login_page.js'
+import { Recommended_Companies_Page } from '../SwiftTMS_Automation Testing /pageObjects/recommended companies _ page.js'
+                                      //     /Users/linhdo/Desktop/cypress-automated/cypress/SwiftTMS_Automation Testing /General User Account Tests/RecommendedCompany_spec.js
+                                    //     /Users/linhdo/Desktop/cypress-automated/cypress/support/commands.js
 
 
+const LOGIN_URL= 'api/auth/signin?callbackUrl=https%3A%2F%2Fwww.swifttms.com.au%2F'
+Cypress.Commands.add('Login', (username, password)=> {
+    cy.visit(LOGIN_URL)
+    Login_Page.typeUsername(username)
+    Login_Page.typePassword(password)
+    Login_Page.submitSignIn()
+    cy.url().should('contain','recommended')
 
-// Custome commands for `LogIn` page
-import LoginPage from "../SwiftTMS project/PageObjects/Loginpage.js"
-//For `Top 200` page
-import Top200 from "../SwiftTMS project/PageObjects/Top 200 companies.js"
-// For `Recommended Companies` page
-import RecommendedCompaniesPage from "../SwiftTMS project/PageObjects/Recommended Companies page.js"
-
-Cypress.Commands.add('login', (detail)=> {
-    cy.session('detail', () => {
-        const logIn = new LoginPage()
-        cy.visit('api/auth/signin?callbackUrl=https%3A%2F%2Fwww.swifttms.com.au%2F')
-        logIn.getUsername().type(Cypress.env('username')).should('be.visible')
-        logIn.getPassword().type(Cypress.env('password'))
-        logIn.getSigninbutton().click()  
-        cy.url().should('contain','recommended')
-            
-    })
 })
 
 
-Cypress.Commands.add('Validate_table_content', (content)=> {
-    const reCompany= new RecommendedCompaniesPage()
-    let result = 'fail'
-    reCompany.ColumnName().each((el, index, list) => {
-        const textColumn= el.text()
-        if(textColumn === content) {
-            result= 'pass'
-            cy.wrap(el)
-        }
-    }).then(function() {
-        expect(result).to.equal('pass')
-    }) 
+Cypress.Commands.add("Validate_Recommended_Company_Financial_Indicator", function(index, APIresponse) {
+    const listOfCompanies= APIresponse.body[0].result.data.json.data
+
+    let Code_Response= listOfCompanies[index].code
+    let Name_Response= listOfCompanies[index].name
+    let EarningYield_Response= parseFloat((listOfCompanies[index].CompanyMetrics.earningsYield *100).toFixed(2))
+    let PE_Response=parseFloat((listOfCompanies[index].CompanyMetrics.peRatio).toFixed(2))
+    let EPS_Response= parseFloat((listOfCompanies[index].CompanyMetrics.earningsPerShare).toFixed(2))
+    let Dividend_Yield_Response= parseFloat((listOfCompanies[index].CompanyMetrics.dividendYield).toFixed(2))
+    let Closing_Price_Response= parseFloat((listOfCompanies[index].CompanyMetrics.closePrice).toFixed(2))
+    let Market_Price_Response= parseFloat((listOfCompanies[index].CompanyMetrics.marketValuePrice).toFixed(2))
+    let Discount_Price_Response= parseFloat((listOfCompanies[index].CompanyMetrics.discountValuePrice).toFixed(2))
+
+    Recommended_Companies_Page.VerifyCodeComp(index, Code_Response)
+    Recommended_Companies_Page.VerifyNameComp(index, Name_Response)
+    Recommended_Companies_Page.VerifyEarningsYield(index, EarningYield_Response)
+    Recommended_Companies_Page.VerifyPE_Ratio(index, PE_Response )
+    Recommended_Companies_Page.VerifyEPS(index, EPS_Response)
+    Recommended_Companies_Page.VerifyDividendYield(index, Dividend_Yield_Response)
+    Recommended_Companies_Page.VerifyClosingPrice(index, Closing_Price_Response)
+    Recommended_Companies_Page.VerifyMarketPrice(index, Market_Price_Response)
+    Recommended_Companies_Page.VerifyDiscountedPrice(index, Discount_Price_Response)
+
 })
-
-Cypress.Commands.add("viewAnalytics", (compCode)=> {
-    const reCompany= new RecommendedCompaniesPage()
-    reCompany.CodeColumn().each((el, index, list) => {
-        const code= el.text()
-        if(code === compCode) {
-            reCompany.ActionsColumn().eq(index).click()
-            cy.url().should('include', 'company/analytics?companyCode=' + compCode )
-            cy.go('back')
-            cy.url().should('include', 'recommended')
-        }
-    })     
-})
-
-Cypress.Commands.add('Validate_the_recommendedlist', (code)=> {
-    const reCompany= new RecommendedCompaniesPage()
-    let result= 'fail'
-    reCompany.CodeColumn().each(($el, index, list) => {
-        const codeCompany= $el.text()
-        if(codeCompany === code) {
-            result = 'match'
-            cy.wrap($el)
-        }
-    }).then(function() {
-        expect(result).to.equal('match')
-    })
-}) 
-
-
-
-Cypress.Commands.add('Validate_table_content', (content)=> {
-    const top200Page= new Top200()
-    let result = 'fail'
-    top200Page.getColumnName().each((el, index, list) => {
-        const textColumn= el.text()
-        if(textColumn === content) {
-            result= 'pass'
-            cy.wrap(el)
-        }
-    }).then(function() {
-        expect(result).to.equal('pass')
-    }) 
-})
-
-Cypress.Commands.add("validate_ViewAnalytics", (a)=> {
-    const top200Page= new Top200()
-    top200Page.getCodeColumn().each(($el, index, list) => {
-        const code= $el.text()
-        if(code === a) {
-            cy.wrap($el)
-            top200Page.getViewAnalyticLink().eq(index).click()
-            cy.url().should('include', 'company/analytics?companyCode=' + a )
-            cy.go('back')
-            cy.wait(2000)
-            cy.url().should('include', 'metrics/top200')
-        }
-    })     
-})
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
