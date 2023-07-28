@@ -29,10 +29,8 @@ Cypress.Commands.add('LoginAPI', (token)=> {
 })
 */
 
-import { Login_Page } from '../SwiftTMS_Automation Testing /pageObjects/login_page.js'
-import { Recommended_Companies_Page } from '../SwiftTMS_Automation Testing /pageObjects/recommended companies _ page.js'
-                                      //     /Users/linhdo/Desktop/cypress-automated/cypress/SwiftTMS_Automation Testing /General User Account Tests/RecommendedCompany_spec.js
-                                    //     /Users/linhdo/Desktop/cypress-automated/cypress/support/commands.js
+import { Login_Page } from '../SwiftTMSAutomationTesting /pageObjects/login_page.js'
+import { Recommended_Companies_Page } from '../SwiftTMSAutomationTesting /pageObjects/recommendedcompanies _ page.js'
 
 
 const LOGIN_URL= 'api/auth/signin?callbackUrl=https%3A%2F%2Fwww.swifttms.com.au%2F'
