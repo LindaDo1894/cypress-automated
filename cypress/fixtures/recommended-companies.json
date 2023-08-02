@@ -1,0 +1,11 @@
+{ 
+  "invalidCode": ["TES", "ab12","qw@"],
+  "invalidName":["Tesla", "jojo", "CiCi"],
+  "validCode" : ["ARB", "BHP", "FPH"],
+  "validName":["BHP Group Ltd","Wesfarmers Ltd", "JB HiFi Ltd"]
+}
+
+
+
+
+

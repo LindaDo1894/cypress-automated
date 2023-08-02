@@ -29,43 +29,43 @@ Cypress.Commands.add('LoginAPI', (token)=> {
 })
 */
 
-import { Login_Page } from '../SwiftTMSAutomationTesting /pageObjects/login_page.js'
-import { Recommended_Companies_Page } from '../SwiftTMSAutomationTesting /pageObjects/recommendedcompanies _ page.js'
+import { LoginPage } from '../SwiftTMSAutomationTesting/page-objects/login-page.js'
+import { RecommendedCompaniesPage } from '../SwiftTMSAutomationTesting/page-objects/recommended-companies-page.js'
 
 
-const LOGIN_URL= 'api/auth/signin?callbackUrl=https%3A%2F%2Fwww.swifttms.com.au%2F'
-Cypress.Commands.add('Login', (username, password)=> {
-    cy.visit(LOGIN_URL)
-    Login_Page.typeUsername(username)
-    Login_Page.typePassword(password)
-    Login_Page.submitSignIn()
+const loginURL= 'api/auth/signin?callbackUrl=https%3A%2F%2Fwww.swifttms.com.au%2F'
+Cypress.Commands.add('login', (username, password)=> {
+    cy.visit(loginURL)
+    LoginPage.inputUsername(username)
+    LoginPage.inputPassword(password)
+    LoginPage.submit()
     cy.url().should('contain','recommended')
 
 })
 
 
-Cypress.Commands.add("Validate_Recommended_Company_Financial_Indicator", function(index, APIresponse) {
-    const listOfCompanies= APIresponse.body[0].result.data.json.data
+Cypress.Commands.add("verifyRecommendedCompanyFinancialIndicator", function(index,response) {
+    const listOfCompanies= response.body[0].result.data.json.data
 
-    let Code_Response= listOfCompanies[index].code
-    let Name_Response= listOfCompanies[index].name
-    let EarningYield_Response= parseFloat((listOfCompanies[index].CompanyMetrics.earningsYield *100).toFixed(2))
-    let PE_Response=parseFloat((listOfCompanies[index].CompanyMetrics.peRatio).toFixed(2))
-    let EPS_Response= parseFloat((listOfCompanies[index].CompanyMetrics.earningsPerShare).toFixed(2))
-    let Dividend_Yield_Response= parseFloat((listOfCompanies[index].CompanyMetrics.dividendYield).toFixed(2))
-    let Closing_Price_Response= parseFloat((listOfCompanies[index].CompanyMetrics.closePrice).toFixed(2))
-    let Market_Price_Response= parseFloat((listOfCompanies[index].CompanyMetrics.marketValuePrice).toFixed(2))
-    let Discount_Price_Response= parseFloat((listOfCompanies[index].CompanyMetrics.discountValuePrice).toFixed(2))
+    let codeInResponse= listOfCompanies[index].code
+    let nameInResponse= listOfCompanies[index].name
+    let earningYieldInResponse= parseFloat((listOfCompanies[index].CompanyMetrics.earningsYield *100).toFixed(2))
+    let peRatioInResponse=parseFloat((listOfCompanies[index].CompanyMetrics.peRatio).toFixed(2))
+    let epsInResponse= parseFloat((listOfCompanies[index].CompanyMetrics.earningsPerShare).toFixed(2))
+    let dividendYieldInResponse= parseFloat((listOfCompanies[index].CompanyMetrics.dividendYield).toFixed(2))
+    let closingPriceInResponse= parseFloat((listOfCompanies[index].CompanyMetrics.closePrice).toFixed(2))
+    let marketPriceInResponse= parseFloat((listOfCompanies[index].CompanyMetrics.marketValuePrice).toFixed(2))
+    let discountPriceInResponse= parseFloat((listOfCompanies[index].CompanyMetrics.discountValuePrice).toFixed(2))
 
-    Recommended_Companies_Page.VerifyCodeComp(index, Code_Response)
-    Recommended_Companies_Page.VerifyNameComp(index, Name_Response)
-    Recommended_Companies_Page.VerifyEarningsYield(index, EarningYield_Response)
-    Recommended_Companies_Page.VerifyPE_Ratio(index, PE_Response )
-    Recommended_Companies_Page.VerifyEPS(index, EPS_Response)
-    Recommended_Companies_Page.VerifyDividendYield(index, Dividend_Yield_Response)
-    Recommended_Companies_Page.VerifyClosingPrice(index, Closing_Price_Response)
-    Recommended_Companies_Page.VerifyMarketPrice(index, Market_Price_Response)
-    Recommended_Companies_Page.VerifyDiscountedPrice(index, Discount_Price_Response)
+    RecommendedCompaniesPage.verifyCompanyCode(index, codeInResponse)
+    RecommendedCompaniesPage.verifyCompanyName(index, nameInResponse)
+    RecommendedCompaniesPage.verifyEarningsYield(index, earningYieldInResponse)
+    RecommendedCompaniesPage.verifyPERatio(index, peRatioInResponse)
+    RecommendedCompaniesPage.verifyEPS(index, epsInResponse)
+    RecommendedCompaniesPage.verifyDividendYield(index, dividendYieldInResponse)
+    RecommendedCompaniesPage.verifyClosingPrice(index, closingPriceInResponse)
+    RecommendedCompaniesPage.verifyMarketPrice(index, marketPriceInResponse)
+    RecommendedCompaniesPage.verifyDiscountedPrice(index, discountPriceInResponse)
 
 })
 
