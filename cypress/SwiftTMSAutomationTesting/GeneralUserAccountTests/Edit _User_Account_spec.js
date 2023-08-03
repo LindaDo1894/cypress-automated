@@ -24,7 +24,7 @@ describe('Edit account testing', function () {
     })
 
     it('require a new valid Name', function () {
-        const invalidName= 'abc'
+        const invalidName= 'abcd'
         Edit_My_Account_Dialog.typeName(invalidName)
         Edit_My_Account_Dialog.clickSubmit()
         Edit_My_Account_Dialog.displayedErrorMessage()
