@@ -4,18 +4,23 @@ module.exports = defineConfig({
   watchForFileChanges: false,
   defaultCommandTimeout:10000,
   projectId: 'awmnzo',
+  "reporter": "cypress-mochawesome-reporter",
+  "reporterOptions": {
+    "reportDir": "cypress/results",
+    "overwrite": false,
+    "html": true,
+    "json": true
+  },
   env: {
     username: 'Test_User1',
     password: 'Test123'
   }, 
   e2e: {
     baseUrl: "https://www.swifttms.com.au",
-    watchForFileChanges: false,
     setupNodeEvents(on, config) {
-
-      // implement node event listeners here
+      require('cypress-mochawesome-reporter/plugin')(on);
     },
-  specPattern:'cypress/SwiftTMSAutomationTesting/general-user-account-tests/*-spec.js',
+  specPattern:'cypress/SwiftTMSAutomationTesting/general-user-account-tests/login-spec.js',
   testIsolation:true,
   experimentalStudio: true
   },

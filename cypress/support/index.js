@@ -18,6 +18,7 @@ import './commands'
 import 'cypress-xpath'
 //import '@shelex/cypress-allure-plugin';
 import 'moment'
+import 'cypress-mochawesome-reporter/register'
 //import 'cypress-plugin-tab'
 
 // Alternatively you can use CommonJS syntax:
