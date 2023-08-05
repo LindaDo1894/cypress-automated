@@ -20,7 +20,7 @@ module.exports = defineConfig({
     setupNodeEvents(on, config) {
 
     },
-  specPattern:'cypress/SwiftTMSAutomationTesting/general-user-account-tests/login-spec.js',
+  specPattern:'./cypress/SwiftTMSAutomationTesting/general-user-account-tests/login-spec.js',
   testIsolation:true,
   experimentalStudio: true
   },
